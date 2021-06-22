@@ -1,0 +1,94 @@
+{% extends "admin_base.html" %} {% block title %}Edit Product{% endblock %}
+
+{% block content %} 
+<form method="POST" action="{{ url_for('views.save_product') }}">
+
+    {% if product.id %}
+        <input value="{{product.id}}" name="id" type="hidden" />
+        <br>
+        <h3 align="center">Edit Product</h3>    
+    {% else %}
+        <br>
+        <h3 align="center">New Product</h3>
+    {% endif %}
+    
+    <div class="form-group">
+        <label for="">Name</label>
+        <input 
+           type="text" 
+           class="form-control" 
+           id="name" 
+           name="name" 
+           {% if product.name %}
+           value="{{product.name}}"
+           {% else %}
+           placeholder="Enter Product Name"
+           {% endif %}
+        />
+    </div>
+    <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <input 
+           type="text" 
+           class="form-control" 
+           id="quantity" 
+           name="quantity" 
+           {% if product.quantity %}
+           value="{{product.quantity}}"
+           {% else %}
+           placeholder="Enter Quantity"
+           {% endif %}
+        />
+    </div>
+    <div class="form-group">
+        <label for="price">Price</label>
+        <input 
+           type="text" 
+           class="form-control" 
+           id="price" 
+           name="price" 
+           {% if product.price %}
+           value="{{product.price}}"
+           {% else %}
+           placeholder="Enter Price"
+           {% endif %}
+        />
+    </div>
+    <div class="form-group">
+        <label for="">Category</label>
+        <input 
+           type="text" 
+           class="form-control" 
+           id="category" 
+           name="category" 
+           {% if product.category %}
+           value="{{product.category}}"
+           {% else %}
+           placeholder="Enter Product Category"
+           {% endif %}
+        />
+    </div>
+    <div class="form-group">
+        <label for="">Image URL</label>
+        <input 
+           type="text" 
+           class="form-control" 
+           id="img_url" 
+           name="img_url" 
+           {% if product.img_url %}
+           value="{{product.img_url}}"
+           {% else %}
+           placeholder="Enter Product Image URL"
+           {% endif %}
+        />
+    </div>
+
+    <br>
+
+    {% if product.id %}
+        <button type="submit" class="btn btn-primary">Edit product</button>
+    {% else %}
+        <button type="submit" class="btn btn-primary">Add product</button>
+    {% endif %}
+</form>
+{% endblock %}

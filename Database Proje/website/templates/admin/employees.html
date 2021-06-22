@@ -1,0 +1,36 @@
+{% extends "admin_base.html" %} {% block title %}Employees{% endblock %}
+
+{% block content %} 
+<br>
+<h1 style="text-align: center;">EMPLOYEES</h1>
+<br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Salary</th>
+                <th scope="col">Start Time</th>
+                <th scope="col">Dept. Name</th>
+                
+            </tr>
+        </thead>
+{% for employee in employees %} 
+        <tbody>
+        <tr>
+            <td>{{ employee.id }}</td>
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.salary }}</td>
+            <td>{{ employee.start_date }}</td>
+            {% for department in departments %}
+                {% if department.id == employee.department_id %}
+                   <td>{{ department.name }}</td>
+                {% endif %}
+            {% endfor %}
+        </tr>
+        </tbody>       
+{% endfor %}
+    </table>
+
+
+{% endblock %}

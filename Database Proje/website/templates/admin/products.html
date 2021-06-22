@@ -1,0 +1,51 @@
+{% extends "admin_base.html" %} {% block title %}Products{% endblock %}
+
+{% block content %} 
+<br>
+<h1 style="text-align: center;">PRODUCTS</h1>
+<br>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Category</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+{% for product in products %} 
+        <tbody>
+        <tr>
+            <th scope="row">{{ product.id }}</th>
+            <td>{{ product.name }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.category }}</td>
+            <td><a href="{{ url_for('views.product_detail', product_id=product.id) }}">
+                <button type="button" class="btn btn-primary">
+                    Edit
+                </button>
+                </a>
+            </td>
+            <td>
+                <a href="{{ url_for('views.delete_product', product_id=product.id) }}">
+                     <button type="button" class="btn btn-dark">Delete</button>     
+                </a>
+            </td>
+        </tr>
+        </tbody>       
+{% endfor %}
+    </table>
+
+<br>
+<a href="{{ url_for('views.product_detail') }}">
+    <button type="button" class="btn btn-success">Add Product</button>
+</a>
+<br><br>
+
+
+{% endblock %}

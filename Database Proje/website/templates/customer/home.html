@@ -1,0 +1,64 @@
+{% extends "customer_base.html" %} {% block title %}Home{% endblock %} {% block content %}
+    <br>
+    <h1 align="center">Home Page</h1>
+    <br>
+    
+    <form method="POST">
+      <div class="input-group" style="width: 45%; float: left;">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Price</label>
+        </div>
+        <input type="text" 
+               placeholder="Min Value" 
+               class="form-control"
+               id="min_value" 
+               name="min_value"   
+        />
+        <input type="text" 
+               placeholder="Max Value" 
+               class="form-control"
+               id="max_value" 
+               name="max_value"   
+        />
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="submit">Submit</button>
+        </div>
+      </div>
+
+      <div class="input-group mb-3" style="width: 50%; float: right;">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Category</label>
+        </div>
+        <select  class="custom-select" id="selected_category" name="selected_category" onchange="this.form.submit();">
+          <option selected>Choose...</option>
+          <option value="Earring">Earring</option>
+          <option value="Necklace">Necklace </option>
+          <option value="Bracelet">Bracelet</option>
+        </select>
+      </div>
+    </form>
+    <br>
+    
+    <div class="row col-12">
+    
+    {% for product in products %}
+
+      <div class="card col-3" style="margin-bottom: 30px; margin-left: 70px; width: 16rem;">
+        <img src="{{ product.img_url }}" height ="250px" class="card-img-top" alt="Picture" style="margin-top:5px;">
+        <div class="card-body">
+          <h5 class="card-title" align="center">{{ product.name }}</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" align="center">Price: {{ product.price }}</li>
+        </ul> 
+        <div class="card-body" align="center">
+          <a href="{{ url_for('views.add_to_cart', product_id=product.id) }}">
+             <button type="button" class="btn btn-dark">Add Cart</button>     
+          </a>
+        </div>
+      </div>
+      
+    {% endfor %}
+    </div>
+    
+{% endblock %}

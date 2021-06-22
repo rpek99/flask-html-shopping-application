@@ -1,0 +1,31 @@
+{% extends "customer_base.html" %} {% block title %}My Cart{% endblock %} {% block content %}
+    <br>
+    <h1 align="center">My Cart</h1>
+    <br>
+    <div class="row col-12">
+        {% for product in products %}
+            <div class="col-3">
+                <form method="POST" action="{{ url_for('views.delete_from_cart') }}">
+
+                    <div class="card" style="margin-bottom: 30px; margin-left: 70px; width: 16rem;">
+                        <img src="{{ product.img_url }}" height="250px" class="card-img-top" alt="Picture"
+                             style="margin-top:5px;">
+                        <div class="card-body">
+                            <h5 class="card-title" align="center">{{ product.name }}</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" align="center">Price: {{ product.price }}</li>
+                        </ul>
+                        <div class="card-body" align="center">
+                            <input type="hidden" name="product_id" value="{{ product.id }}"/>
+                            <button type="submit" class="btn btn-dark">Delete Cart</button>
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

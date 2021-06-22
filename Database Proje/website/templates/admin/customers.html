@@ -1,0 +1,82 @@
+{% extends "admin_base.html" %} {% block title %}Customers{% endblock %}
+
+{% block content %} 
+<br>
+<h1 style="text-align: center;">CUSTOMERS</h1>
+<br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Adress</th>
+                <th scope="col"></th>
+                
+            </tr>
+            <form method="POST">
+                <tr>
+                    <th scope="col">
+                        <input type="text" 
+                                placeholder="First Name" 
+                                class="form-control"
+                                id="first_name" 
+                                name="first_name"
+                        />      
+                    </th>
+                    <th scope="col">
+                        <input type="text" 
+                                placeholder="Last Name" 
+                                class="form-control"
+                                id="last_name" 
+                                name="last_name"
+                        />
+                    </th>
+                    <th scope="col">
+                        <input type="text" 
+                                placeholder="E-Mail" 
+                                class="form-control"
+                                id="email" 
+                                name="email"
+                        />
+                    </th>
+                    <th scope="col">
+                        <input type="text" 
+                                placeholder="Phone Number" 
+                                class="form-control"
+                                id="phone_number" 
+                                name="phone_number"
+                        />
+                    </th>
+                    <th scope="col">
+                        <input type="text" 
+                               placeholder="Adress" 
+                               class="form-control"
+                               id="adress" 
+                               name="adress"
+                        />
+                    </th>
+                    <th scope="col">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">Submit</button>
+                        </div>
+                    </th> 
+                </tr>              
+            </form>
+        </thead>
+{% for user in users %}
+        <tbody>
+        <tr>
+            <td>{{ user.first_name }}</td>
+            <td>{{ user.last_name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.phone_number }}</td>
+            <td>{{ user.adress }}</td>
+        </tr>
+        </tbody>       
+{% endfor %}
+    </table>
+
+
+{% endblock %}
