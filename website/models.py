@@ -1,10 +1,12 @@
 from flask import Flask
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@localhost/dbName'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost:localhost/dbName'
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 association_table = db.Table('association_table',
     db.Column('product_id', db.Integer, db.ForeignKey('product.id')),
